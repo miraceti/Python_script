@@ -13,6 +13,7 @@ price_data = [[2.00,3.00,1.00,2.40,100.00,'01/02/2020'],
 
 print('version SQL installée')
 print()
+print()
 
 for driver in pyodbc.drivers():
     print(driver)
