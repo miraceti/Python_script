@@ -3,6 +3,7 @@
 Created on Sat Jan 11 21:58:10 2020
 
 @author: eric
+Miraceti56
 """
 
 import pyodbc
