@@ -214,3 +214,129 @@ store_dollars = list(map(to_dollars,store))
 print(store)
 print(store_euros)
 print(store_dollars)
+
+#filter function : create a collection of element from an iterable if return ttrue
+# filter(function, iterable)
+
+store =[("shirt",20.00),("pants",25.00),("jacket",50.00),("socks",10.00)]
+
+# function
+age = lambda data: data[1] > 10.00
+
+# filter
+storef=list(filter(age, store))
+
+for i in storef:
+    print(i)
+
+import functools  
+# reduce function : reduce(function, iterable)
+factorial = [5,4,3,2,1]
+result = functools.reduce(lambda x,y,: x * y, factorial)
+print("result : ",result)
+
+# list comprehension
+# create a new list with less syntax
+# list = [expression for item in iterable]
+# list = [expression for item in iterable if conditions]
+# list = [expression if/else for item in iterable]
+
+squares =[]
+for i in range(1,11):
+    squares.append(i * i)
+print(squares)
+
+squares = [i * i for i in range(1,11)]
+print(squares)
+
+students = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]
+passed_students = list(filter(lambda x: x >= 60, students))
+print(passed_students)
+
+passed_students = [i for i in students if i >= 60]
+print(passed_students)
+
+passed_students = [i  if i >= 60 else "Echec" for i in students]
+print(passed_students)
+
+# dictionary comprehension
+# dict = {key: expression for (k,v) in iter}
+# dict = {key: expression for (k,v) in iter if cond}
+# dict = {key: if/else for (k,v) in iter}
+# dict = {key: function(v) for (k,v) in iter}
+cities_in_f = {'ny':32, "boston":75, "los angeles": 100, 'chicago':50}
+cities_in_c = {k: round(((v-32)*(5/9))) for (k,v) in cities_in_f.items()}
+print(cities_in_c)
+
+weather ={'ny':'snowing', 'boston':'sunny',"los angeles":"sunny", "chicago":"cloudy"}
+sunny_weather = {k: v for (k,v) in weather.items() if v == "sunny"}
+print(sunny_weather)
+sunny_weather_k = {k for (k,v) in weather.items() if v == "sunny"}
+print(sunny_weather_k)
+sunny_weather_v = {v for (k,v) in weather.items() if v == "sunny"}
+print(sunny_weather_v)
+
+cities = {'ny':32, "boston":75, "los angeles": 100, 'chicago':50}
+desc_cities = {k: ("Hot!" if v >= 40 else "Cold") for (k,v) in cities.items()}
+print(desc_cities)
+
+cities2 = {'ny':32, "boston":75, "los angeles": 100, 'chicago':50}
+def check_temp(v):
+    if v >= 70:
+       return "hot"
+    elif 69 >= v >= 40:
+        return "warm"
+    else:
+       return  "cold"
+desc_cities2 = {k: check_temp(v) for (k,v) in cities2.items()}
+print(desc_cities2)
+
+# zip (*iter) : agregate elements from 2 or more iter (list, tuple, set) and create a zip object
+usernames =["dude","bro","mister"]
+passwords=("p@ssword","abc123","guest")
+users =zip(usernames,passwords)
+print(users)
+for i in users:
+    print(i)
+    
+usersl = list(zip(usernames,passwords))
+print(usersl)
+
+usersd = dict(zip(usernames,passwords))
+print(usersd)
+for k,v in usersd.items():
+    print(k+' : '+v)
+
+login_date = ["1/1/2021","1/2/2021","1/3/2021"]
+usersld = zip(usernames, passwords, login_date)
+for i in usersld :
+    print(i)
+    
+# time
+import time
+
+print(time.ctime(0)) #01/01/1970
+print(time.time())#nb second from epoch 
+
+print(time.ctime(time.time()))
+
+time_object = time.localtime()
+print(time_object)
+# strftime
+local_time1 = time.strftime("%d/%m/%y",time_object)
+print(local_time1)
+local_time2 = time.strftime("%d/%m/%Y",time_object)
+print(local_time2)
+local_time3 = time.strftime("%B %d %Y %H:%M:%S",time_object)
+print(local_time3)
+
+# strptime
+time_string="20 April, 2020"
+time_object1 = time.strptime(time_string, "%d %B, %Y")
+print(time_object1)
+
+# asctime
+time_tuple = (2020, 4, 20, 4, 20, 0, 0, 0, 0)
+time_string2 = time.asctime(time_tuple)
+print(time_string2)
+
